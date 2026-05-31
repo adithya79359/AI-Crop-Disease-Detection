@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Crop Disease Detection</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2ecc71,#27ae60);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:850px;
+    max-width:95%;
+    background:white;
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+.title{
+    text-align:center;
+    color:#27ae60;
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.upload-box{
+    border:3px dashed #27ae60;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+input[type=file]{
+    font-size:16px;
+}
+
+.btn{
+    display:block;
+    margin:auto;
+    background:#27ae60;
+    color:white;
+    border:none;
+    padding:15px 35px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#219150;
+    transform:scale(1.05);
+}
+
+.result{
+    margin-top:35px;
+    background:#ecfdf3;
+    padding:25px;
+    border-radius:20px;
+    border-left:8px solid #27ae60;
+}
+
+.result h2{
+    margin-bottom:15px;
+}
+
+.prediction{
+    color:#27ae60;
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.confidence{
+    font-size:22px;
+    color:#0066cc;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.info-card{
+    background:white;
+    padding:15px;
+    margin-top:15px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.info-title{
+    color:#27ae60;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="title">🌿 AI Crop Disease Detection</h1>
+
+<p class="subtitle">
+Upload a crop leaf image and get disease analysis instantly
+</p>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="upload-box">
+
+<h3>📷 Upload Leaf Image</h3>
+
+<br>
+
+<input type="file" name="image" required>
+
+</div>
+
+<button class="btn" type="submit">
+🔍 Predict Disease
+</button>
+
+</form>
+
+{% if prediction %}
+
+<div class="result">
+
+<h2>Prediction Result</h2>
+
+<div class="prediction">
+{{ prediction }}
+</div>
+
+<div class="confidence">
+Confidence: {{ confidence }}%
+</div>
+
+<div class="info-card">
+<div class="info-title">🦠 Disease Description</div>
+{{ info.description }}
+</div>
+
+<div class="info-card">
+<div class="info-title">💊 Treatment</div>
+{{ info.treatment }}
+</div>
+
+<div class="info-card">
+<div class="info-title">⏳ Recovery Time</div>
+{{ info.recovery }}
+</div>
+
+<div class="info-card">
+<div class="info-title">🛡 Prevention Tips</div>
+{{ info.prevention }}
+</div>
+
+<div class="info-card">
+<div class="info-title">🌱 Recommended Fertilizer</div>
+{{ fertilizer.fertilizer }}
+</div>
+
+<div class="info-card">
+<div class="info-title">📏 Dosage</div>
+{{ fertilizer.dosage }}
+</div>
+
+<div class="info-card">
+<div class="info-title">🧪 Recommended Pesticide</div>
+{{ fertilizer.pesticide }}
+</div>
+
+<div class="info-card">
+<div class="info-title">📅 Application Schedule</div>
+{{ fertilizer.application }}
+</div>
+
+</div>
+
+{% endif %}
+
+<div class="footer">
+MCA Major Project | PyTorch + Flask + AI
+</div>
+
+</div>
+
+</body>
+</html>
